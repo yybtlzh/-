@@ -8,8 +8,6 @@ import java.util.Random;
   * @ClassName: RandomUtil
   * @Description: 根据权重生成随机数(可以是任意类型)
   * @author liuzehong
-  * @date 2018年10月22日 上午9:45:46
-  * @version V1.0
  *
  */
 public class RandomUtil {

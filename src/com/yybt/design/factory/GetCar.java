@@ -10,7 +10,7 @@ import com.yybt.utils.ReflectHelper;
  *
  */
 public class GetCar {
-	public void get(String name){
+	public Car get(String name){
 		
         Car x = null ;
         if ( name.equals("CarA")) {
@@ -20,6 +20,9 @@ public class GetCar {
         }else if ( name.equals("CarC")){
             x = StaticFactory.getC();
         }
+        
+        return x;
+        
         
     }
 
