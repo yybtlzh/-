@@ -1,4 +1,4 @@
-package com.yybt.algorithm.hash.char01;
+package com.yybt.algorithm.hash.ch01;
 
 /**
  * 
