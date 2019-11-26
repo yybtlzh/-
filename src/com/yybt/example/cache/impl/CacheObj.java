@@ -1,4 +1,4 @@
-package com.yybt.example.Cache.impl;
+package com.yybt.example.cache.impl;
 
 /**
  * 缓存对象
@@ -12,11 +12,11 @@ public class CacheObj<K, V> {
 	protected final V obj;
 	
 	/** 上次访问时间 */
-	private long lastAccess; 
+	private long lastAccess=0; 
 	/** 访问次数 */
-	protected long accessCount;
+	protected long accessCount=0;
 	/** 对象存活时长，0表示永久存活*/
-	private long durableTime;
+	private long durableTime=0;
 	
 	/**
 	 * 构造

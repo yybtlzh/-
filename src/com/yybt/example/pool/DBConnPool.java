@@ -144,7 +144,7 @@ public class DBConnPool {
        return connection; // 返回创建的新的数据库连接
    }
 
-   public static synchronized Connection getConnection()  {
+    protected static synchronized Connection getConnection()  {
 	   try {
        // 确保连接池己被创建
        if (connections == null||connections.size()<1) {
@@ -220,7 +220,7 @@ public class DBConnPool {
     * @param 需返回到连接池中的连接对象
     */
 
-   public static void returnConnection(Connection conn) {
+   protected static void returnConnection(Connection conn) {
        // 确保连接池存在，如果连接没有创建（不存在），直接返回
        if (connections == null) {
            System.out.println(" 连接池不存在，无法返回此连接到连接池中 !");
@@ -245,7 +245,7 @@ public class DBConnPool {
     *
     */
 
-   public synchronized void refreshConnections() throws SQLException {
+   protected static synchronized void refreshConnections() throws SQLException {
        // 确保连接池己创新存在
        if (connections == null) {
            System.out.println(" 连接池不存在，无法刷新 !");
@@ -300,7 +300,7 @@ public class DBConnPool {
     * @param 需要关闭的数据库连接
     */
 
-   private void closeConnection(Connection conn) {
+   private static void closeConnection(Connection conn) {
        try {
            conn.close();
        } catch (SQLException e) {

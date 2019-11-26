@@ -57,6 +57,7 @@ public class FirstLastLinkList {
 	 * 显示方法
 	 */
 	public void display() {
+		
 		Node current = first;
 		while(current != null) {
 			current.display();
@@ -69,6 +70,7 @@ public class FirstLastLinkList {
 	 * 查找方法
 	 */
 	public Node find(long value) {
+		
 		Node current = first;
 		while(current.data != value) {
 			if(current.next == null) {

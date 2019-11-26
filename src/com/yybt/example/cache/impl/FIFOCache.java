@@ -1,8 +1,7 @@
-package com.yybt.example.Cache.impl;
+package com.yybt.example.cache.impl;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-
 /**
  *  FIFO(first in first out) 先进先出缓存
  * @author lx
@@ -41,11 +40,12 @@ public class FIFOCache<K, V> extends AbstractCache<K, V> {
 	protected int pruneCache() {
 		int count = 0;
 		CacheObj<K, V> first = null;
-		
-		// 清理过期对象并找出链表头部元素（先入元素）
+		//清理过期对象并找出链表头部元素（先入元素）
 		Iterator<CacheObj<K, V>> values = cacheMap.values().iterator();
+		
+		CacheObj<K, V> cacheObj=null;
 		while (values.hasNext()) {
-			CacheObj<K, V> cacheObj = values.next();
+			cacheObj = values.next();
 			if (cacheObj.isExpired()) {
 				values.remove();
 				count++;
@@ -54,7 +54,7 @@ public class FIFOCache<K, V> extends AbstractCache<K, V> {
 				first = cacheObj;
 			}
 		}
-		// 清理结束后依旧是满的，则删除第一个被缓存的对象
+		//清理结束后依旧是满的，则删除第一个被缓存的对象
 		if (isFull() && null != first) {
 			cacheMap.remove(first.key);
 			count++;

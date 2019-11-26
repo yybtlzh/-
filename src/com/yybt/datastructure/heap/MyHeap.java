@@ -35,7 +35,7 @@ public class MyHeap {
 	
 	private int[] arr;
 	
-	private static int default_size = 20;
+	private static int DEFAULT_SIZE = 20;
 	// 有效数据的大小
 	private int elements;
 
@@ -43,7 +43,7 @@ public class MyHeap {
 		/*this.arr = new int[default_size];
 		this.elements = 0;
 		*/
-		this(default_size);
+		this(DEFAULT_SIZE);
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class MyHeap {
 	 * @return
 	 */
 	public int[] insert(int value) {
-		// 新增一个节点
+		//新增一个节点
 		arr[elements++] = value;
 		shift_up(elements - 1);
 		return arr;

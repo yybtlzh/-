@@ -1,4 +1,4 @@
-package com.yybt.example.Cache.impl;
+package com.yybt.example.cache.impl;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -6,10 +6,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 
-import com.yybt.example.Cache.Cache;
-
+import com.yybt.example.cache.Cache;
 /**
- * 超时和限制大小的缓存的默认实现
+ * 缓存抽象类，主要是针对超时缓存
  * @author lx
  *
  * @param <K>
@@ -18,6 +17,7 @@ import com.yybt.example.Cache.Cache;
 public abstract class AbstractCache<K, V> implements Cache<K, V> {
 
 	protected Map<K, CacheObj<K, V>> cacheMap;
+	
 	private final ReentrantReadWriteLock cacheLock = new ReentrantReadWriteLock();
 	
 	private final ReadLock readLock = cacheLock.readLock();

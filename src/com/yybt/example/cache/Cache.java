@@ -1,4 +1,4 @@
-package com.yybt.example.Cache;
+package com.yybt.example.cache;
 
 import java.util.Iterator;
 /**
