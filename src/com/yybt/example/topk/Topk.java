@@ -3,6 +3,11 @@ package com.yybt.example.topk;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * ∂— µœ÷
+ * @author lx
+ *
+ */
 public class Topk {
 
 	private int[] data;
