@@ -30,7 +30,7 @@ public class JobCallableTaskTest {
 			callableList.add(ft);
 			i++;
 		}
-		   countDownLatch.await();
+		  countDownLatch.await();
 		   
 		for(Future<Integer> future : callableList){  
             try {  

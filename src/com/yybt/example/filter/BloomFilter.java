@@ -4,7 +4,7 @@ import java.util.BitSet;
 
 /**
  * ²¼Â¡¹ıÂË
- * @author lx
+ * @author liuzehong
  *
  */
 public class BloomFilter {

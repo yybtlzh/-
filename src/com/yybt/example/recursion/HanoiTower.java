@@ -3,7 +3,7 @@ package com.yybt.example.recursion;
 
 /**
  * ººÅµËþ£¨dµÝ¹é¾­µäÓ¦ÓÃ£©
- * @author lx
+ * @author liuzehong
  *
  */
 public class HanoiTower {

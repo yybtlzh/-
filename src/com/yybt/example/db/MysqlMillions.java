@@ -8,7 +8,7 @@ import java.util.Random;
 import com.yybt.example.pool.DBConnPool;
 /**
  * 需要在连接池DBConnPool里配置下连接参数
- * @author lx
+ * @author liuzehong
  *
  */
 
