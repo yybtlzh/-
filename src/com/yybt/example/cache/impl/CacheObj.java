@@ -38,7 +38,7 @@ public class CacheObj<K, V> {
 		//这里针对有存活周期的缓存
 		if(this.durableTime > 0) {
 			final long expiredTime = this.lastAccess + this.durableTime;
-			if(expiredTime > 0 && expiredTime < System.currentTimeMillis()) {
+			if(expiredTime > 0 && expiredTime <= System.currentTimeMillis()) {
 			    //当前时间超过过期时间，表示过期
 				return true;
 			}

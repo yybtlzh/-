@@ -2,7 +2,7 @@ package com.yybt.example.recursion;
 
 
 /**
- * 汉诺塔（d递归经典应用）
+ * 汉诺塔（递归经典应用）
  * @author liuzehong
  *
  */

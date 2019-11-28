@@ -42,7 +42,6 @@ public class FIFOCache<K, V> extends AbstractCache<K, V> {
 		CacheObj<K, V> first = null;
 		//清理过期对象并找出链表头部元素（先入元素）
 		Iterator<CacheObj<K, V>> values = cacheMap.values().iterator();
-		
 		CacheObj<K, V> cacheObj=null;
 		while (values.hasNext()) {
 			cacheObj = values.next();
@@ -66,5 +65,19 @@ public class FIFOCache<K, V> extends AbstractCache<K, V> {
 	@Override
 	public Iterator<V> iterator() {
 		return super.iterator();
+	}
+	
+	public static void main(String[] args) {
+		
+		FIFOCache<Object, Object> FIFOCache=new FIFOCache<>(3,1000);
+		FIFOCache.put("zhangsan", "张三");
+		FIFOCache.put("lisi", "李四");
+		FIFOCache.put("wangwu", "王五");
+		FIFOCache.put("zhaoliu", "赵六");
+		Iterator<Object> iterator = FIFOCache.iterator();
+		while (iterator.hasNext()) {
+		System.out.println(iterator.next());
+			
+		}
 	}
 }

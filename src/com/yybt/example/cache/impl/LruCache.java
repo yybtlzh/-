@@ -38,10 +38,11 @@ public class LruCache<K, V> extends AbstractCache<K, V> {
 		}
 		this.capacity = capacity;
 		this.timeout = timeout;
-		//这样就可以实现删除最近最少访问的元素
+		//这样就可以实现删除最近最少访问的元素，参考安卓
 		cacheMap = new MyLinkedHashMap<K, CacheObj<K, V>>(capacity);
 	}
 
+	
 	@SuppressWarnings("hiding")
 	private class MyLinkedHashMap<K, V> extends LinkedHashMap<K, V> {
 		private static final long serialVersionUID = 1L;

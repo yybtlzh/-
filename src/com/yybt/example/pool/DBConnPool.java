@@ -12,7 +12,7 @@ import java.util.Vector;
  * @author liuzehong
  *
  */
-public class DBConnPool {
+class DBConnPool {
 
 	/** 数据库 链接URL地址 **/
 	private static String url;
