@@ -1,4 +1,7 @@
 package com.yybt.algorithm.sort;
+
+import java.util.Arrays;
+
 /**
  * 分析快排步骤：{1,23,4,445,37,4,155,13,9999,20,0}
  *            [1, 0, 4, 445, 37, 4, 155, 13, 9999, 20, 23]
@@ -53,10 +56,22 @@ public class QuickSort {
 			long point = arr[right];
 			//获得切入点，同时对数组进行划分
 			int partition = partition(arr, left, right, point);
+			System.out.println(partition);
 			//对左边的子数组进行快速排序
 			sort(arr,left,partition - 1);
 			//对右边的子数组进行快速排序
 			sort(arr,partition + 1, right);
 		}
 	}
+	
+	 /**
+     * 测试调用
+     * @param args
+     */
+    public static void main(String[] args) {  
+        long[] a = {1,23,4,445,37,4,155,13,9999,20,0}; 
+        System.out.println("排序前:"+Arrays.toString(a));  
+        sort(a,0,10);  
+        System.out.println("排序后:"+Arrays.toString(a));  
+    }  
 }

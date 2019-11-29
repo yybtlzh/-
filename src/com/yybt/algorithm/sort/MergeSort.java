@@ -7,7 +7,7 @@ import java.util.Arrays;
  *
  */
 public class MergeSort {
-
+	
 	/**
 	 * 
 	 * @param arr
@@ -64,6 +64,7 @@ public class MergeSort {
 	}
 
 	public static void main(String[] args) {
+		
 		int[] a = { 49, 38, 65, 97, 76, 13, 27, 50 };
 		System.out.println("≈≈–Ú∫Û£∫" + Arrays.toString(a));
 		int[] sort = new MergeSort().sort(a, 0, a.length - 1);

@@ -21,7 +21,11 @@ public class SingProxy implements InvocationHandler {
 	public Object bind(Object target) {
 		this.target = target;
 		// 使用Proxy类创建一个动态代理对象
-		Object proxy = Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(),
+		Object proxy = Proxy.newProxyInstance(
+				target.getClass()
+				 .getClassLoader(), 
+			 	target.getClass()
+				 .getInterfaces(),
 				this);
 		return proxy;
 	}

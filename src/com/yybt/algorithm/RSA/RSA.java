@@ -34,6 +34,6 @@ public class RSA {
 		System.out.println("加密前：" + msg); 
 		System.out.println("加密后：" + encodeMsg);
 		System.out.println("解密后：" + decodeMsg); 
-		}
+	}
 
 }

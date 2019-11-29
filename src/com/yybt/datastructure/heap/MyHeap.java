@@ -23,7 +23,6 @@ package com.yybt.datastructure.heap;
  * 堆虽然是一颗树，但是通常存放在一个数组中，父节点和孩子节点的父子关系通过数组下标来确定。如下图的小根堆及存储它的数组：
  * 
  * //堆分为两种类型：大根堆、小根堆 //顾名思义，就是保证根节点是所有数据中最大/小，并且尽力让小的节点在上方
- * 
  * 上浮 shift_up； 下沉 shift_down 插入 push 弹出 pop 取顶 top 堆排序 heap_sort
  */
 
@@ -33,16 +32,13 @@ package com.yybt.datastructure.heap;
  **/
 public class MyHeap {
 	
-	private int[] arr;
+	public int[] arr;
 	
 	private static int DEFAULT_SIZE = 20;
 	// 有效数据的大小
 	private int elements;
 
 	public MyHeap() {
-		/*this.arr = new int[default_size];
-		this.elements = 0;
-		*/
 		this(DEFAULT_SIZE);
 	}
 
@@ -160,9 +156,12 @@ public class MyHeap {
 	 * @return
 	 */
 	public int[] insert(int value) {
-		//新增一个节点
-		arr[elements++] = value;
-		shift_up(elements - 1);
+		if (elements<arr.length) {
+			//新增一个节点
+			arr[elements++] = value;
+			shift_up(elements - 1);
+		}
+		
 		return arr;
 	}
 
@@ -179,7 +178,7 @@ public class MyHeap {
 			return arr;
 		exChange(index, elements - 1);
 		shift_down(index);
-		arr[elements - 1] = 0;
+		arr[--elements] = 0;
 		return arr;
 	}
 
@@ -223,5 +222,18 @@ public class MyHeap {
 		exChange(i, temp);
 		// 递归调用
 		heapify(temp, size);
+	}
+	
+	public  int  get(int index) {
+		if (index<0||index>=arr.length) {
+			return -1;
+		}
+		return arr[index];
+	}
+	
+	public  void  show() {
+		for (int i = 0; i < arr.length; i++) {
+				System.out.println(arr[i]);
+		}
 	}
 }
