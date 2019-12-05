@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Random;
 
-import com.yybt.example.pool.DBConnPool;
+import com.yybt.example.pool.DBPoolUtils;
 /**
  * 需要在连接池DBConnPool里配置下连接参数
  * @author liuzehong
@@ -20,7 +20,7 @@ public class MysqlMillions {
 	    PreparedStatement pstm =null;
 	    try {
 	      Class.forName("com.mysql.jdbc.Driver");
-	      conn = DBConnPool.getConnection();    
+	      conn = DBPoolUtils.getConnection();    
 	      String sql = "INSERT INTO usertable (uname,upassword,uphone) VALUES(?,?,?)";
 	      pstm = conn.prepareStatement(sql);
 	      Random rand = new Random();
