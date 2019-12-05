@@ -133,6 +133,12 @@ public class JumpHashTable<T> {
 		}
 	}
 	
+	/**
+	 * 下一个素数
+	 * @param n
+	 * @return
+	 */
+
 	private int nextPrime(int n) {
 		if (n % 2 == 0)
 			n++;
@@ -141,6 +147,12 @@ public class JumpHashTable<T> {
 		return n;
 	}
 
+
+	/**
+	 * 是不是素数
+	 * @param n
+	 * @return
+	 */
 	private boolean isPrime(int n) {
 
 		if (n == 2 || n == 3)

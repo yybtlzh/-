@@ -1,5 +1,6 @@
 package com.yybt.algorithm.hash.ch03;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class CuckooHashTable<E> {
@@ -42,6 +43,11 @@ public class CuckooHashTable<E> {
 	}
 
 	private Random random = new Random();
+	
+	public String get(int index) {
+		return Arrays.toString(array);
+		
+	}
 
 	/**
 	 * 自定义大小
@@ -162,6 +168,12 @@ public class CuckooHashTable<E> {
 		}
 	}
 
+	/**
+	 * 下一个素数
+	 * @param n
+	 * @return
+	 */
+
 	private int nextPrime(int n) {
 		if (n % 2 == 0)
 			n++;
@@ -170,6 +182,12 @@ public class CuckooHashTable<E> {
 		return n;
 	}
 
+
+	/**
+	 * 是不是素数
+	 * @param n
+	 * @return
+	 */
 	private boolean isPrime(int n) {
 
 		if (n == 2 || n == 3)
@@ -231,7 +249,6 @@ public class CuckooHashTable<E> {
 			if (array[s] != null) {
 				System.out.println(array[s]);
 			}
-
 		}
 
 	}
@@ -243,6 +260,7 @@ public class CuckooHashTable<E> {
 		// 插入
 		for (int i = 0; i < strs.length; i++) {
 			table.add(strs[i]);
+			
 		}
 		// 打印表
 		table.printArray();
