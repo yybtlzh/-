@@ -31,7 +31,6 @@ public class JumpHashTable<T> {
 	} 
 	
 	
-	
 	@SuppressWarnings("unchecked")
 	public JumpHashTable(int size) {
 		array = new Node[size];
@@ -154,7 +153,6 @@ public class JumpHashTable<T> {
 	 * @return
 	 */
 	private boolean isPrime(int n) {
-
 		if (n == 2 || n == 3)
 			return true;
 		if (n == 1 || n % 2 == 0)
@@ -284,11 +282,12 @@ public class JumpHashTable<T> {
 	
 	
 	public static void main(String[] args) {
-		JumpHashTable t=new JumpHashTable();
+		JumpHashTable<String> t=new JumpHashTable<String>();
 		for (int i = 0; i < 100; i++) {
 			t.add("zhangs"+i);
 			t.delete("zhangs"+4);
 		}
+		System.out.println(t.size());
 		t.display();
 	}
 
