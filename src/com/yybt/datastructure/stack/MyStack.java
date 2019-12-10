@@ -1,14 +1,16 @@
 package com.yybt.datastructure.stack;
+
+import java.util.Vector;
+
 /**
- *  栈
+ *  栈（改用泛型）
  * @author liuzehong
  *
  */
-public class MyStack {
+public class MyStack<T> {
 	
-	//底层实现是一个数组
-	private long[] arr;
 	private int top;
+	private Vector<T> data;
 	
 	/**
 	 * 默认的构造方法
@@ -21,29 +23,29 @@ public class MyStack {
 	 * 带参数构造方法，参数为数组初始化大小
 	 */
 	public MyStack(int maxsize) {
-		arr = new long[maxsize];
+		data=new Vector<>(maxsize);
 		top = -1;
 	}
 	
 	/**
 	 * 添加数据
 	 */
-	public void push(int value) {
-		arr[++top] = value;
+	public void push(T value) {
+		data.add(++top, value);
 	}
 	
 	/**
 	 * 移除数据
 	 */
-	public long pop() {
-		return arr[top--];
+	public T pop() {
+		return data.remove(top--);
 	}
 	
 	/**
 	 * 查看数据
 	 */
-	public long peek() {
-		return arr[top];
+	public T peek() {
+		return data.get(top);
 	}
 	
 	/**
@@ -57,7 +59,7 @@ public class MyStack {
 	 * 判断是否满了
 	 */
 	public boolean isFull() {
-		return top == arr.length - 1;
+		return top == data.size()-1;
 	}
 	
 

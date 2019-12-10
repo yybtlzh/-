@@ -1,11 +1,13 @@
 package com.yybt.datastructure.graph;
 /**
  * ∂•µ„¿‡
- * @author Administrator
+ * @author liuzehong
  *
  */
 public class Vertex {
+	
 	public char label;
+	
 	public boolean wasVisited;
 	
 	public Vertex(char label) {

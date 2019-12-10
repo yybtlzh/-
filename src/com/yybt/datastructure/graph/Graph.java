@@ -4,7 +4,7 @@ import com.yybt.datastructure.stack.MyStack;
 
 /**
  * Í¼
- * @author Administrator
+ * @author liuzehong
  *
  */
 public class Graph {
@@ -17,7 +17,7 @@ public class Graph {
 	//µ±Ç°¶¥µã
 	private int nVertex;
 	//Õ»
-	private MyStack stack;
+	private MyStack<Integer> stack;
 	
 	public Graph() {
 		vertexList = new Vertex[maxSize];
@@ -28,7 +28,7 @@ public class Graph {
 			}
 		}
 		nVertex = 0;
-		stack = new MyStack();
+		stack = new MyStack<Integer>();
 	}
 	
 	/**
