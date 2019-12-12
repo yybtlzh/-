@@ -90,6 +90,9 @@ public class RSA {
 	 * @param M 明文
 	 * @param pubkey 懒得做区分了，就直接用那个返回的秘钥当参数了
 	 * @return
+	 * 加密 (用e,n)
+	 * 明文：0<M<n
+	 * 密文：C≡M^e (mod n)
 	 */
 	public BigInteger encrypt(BigInteger M, BigInteger[] pubkey){
 		BigInteger N = pubkey[0] ;
@@ -102,6 +105,9 @@ public class RSA {
 	 * @param C  秘文
 	 * @param pubkey 懒得做区分了，就直接用那个返回的秘钥当参数了
 	 * @return
+	 * 解密 (用d,n)
+	 * 密文：C
+	 * 明文：M ≡ C^d (mod n)
 	 */
 	public BigInteger decrypt(BigInteger C, BigInteger[] prikey){
 		BigInteger N = prikey[0] ;
@@ -125,7 +131,7 @@ public class RSA {
 		BigInteger c = rsa.encrypt(m, genKey) ;
 		    
 		System.out.println("密文：" + c);
-		    // 信息解密'''
+		// 信息解密'''
 		BigInteger d = rsa.decrypt(c, genKey) ;
 		System.out.println("明文："+d);
 		 

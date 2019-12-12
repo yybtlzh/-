@@ -19,8 +19,8 @@ public class StackApply {
 	 * @return
 	 */
 	public static String[] infixToSuffix(String infix) {
-		MyStack<String> stack = new MyStack<>(30);
-		String[] suffix = new String[30];
+		MyStack<String> stack = new MyStack<>(infix.length());
+		String[] suffix = new String[infix.length()];
 		int s=0;
 		int length = infix.length();
 		for (int i = 0; i < length; i++) {
@@ -95,7 +95,7 @@ public class StackApply {
 	 * @return
 	 */
 	public static int  compute(String[] str) {
-		MyStack<Integer> stack = new MyStack<>(30);
+		MyStack<Integer> stack = new MyStack<>(str.length);
 		int length =0;
 		for (int i = 0; i < str.length; i++) {
 			if (StringUtils.isEmpty(str[i])) 
@@ -149,7 +149,13 @@ public class StackApply {
 	public static void main(String[] args) {
 		String str = "2*(2+3)*4-9";
 		String[] result = infixToSuffix(str);
-		System.out.println("中缀转后缀："+Arrays.toString(result));
+		String rt="";
+		for (int i = 0; i < result.length; i++) {
+			if(result[i]==null)
+				break;
+			rt+=" "+result[i];
+		}
+		System.out.println("中缀转后缀："+rt);
 		System.out.println("计算结果："+compute(result));
 	}
 
