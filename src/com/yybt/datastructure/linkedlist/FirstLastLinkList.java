@@ -5,11 +5,11 @@ package com.yybt.datastructure.linkedlist;
  * @author liuzehong
  *
  */
-public class FirstLastLinkList {
+public class FirstLastLinkList<T extends Comparable<T>> {
 	//头结点
-	private Node first;
+	protected Node<T> first;
 	//尾结点
-	private Node last;
+	protected Node<T> last;
 	
 	public FirstLastLinkList() {
 		first = null;
@@ -19,8 +19,8 @@ public class FirstLastLinkList {
 	/**
 	 * 插入一个结点，在头结点后进行插入
 	 */
-	public void insertFirst(long value) {
-		Node node = new Node(value);
+	public void insertFirst(T value) {
+		Node<T> node = new Node<T>(value);
 		if(isEmpty()) {
 			last = node;
 		}
@@ -31,8 +31,8 @@ public class FirstLastLinkList {
 	/**
 	 * 插入一个结点，从尾结点进行插入
 	 */
-	public void insertLast(long value) {
-		Node node = new Node(value);
+	public void insertLast(T value) {
+		Node<T> node = new Node<T>(value);
 		if(isEmpty()) {
 			first = node;
 		} else {
@@ -44,9 +44,9 @@ public class FirstLastLinkList {
 	/**
 	 * 删除一个结点，在头结点后进行删除
 	 */
-	public Node deleteFirst() {
-		Node tmp = first;
-		if(first.next == null) {
+	public Node<T> deleteFirst() {
+		Node<T> tmp = first;
+		if(!first.hasNext()) {
 			last = null;
 		}
 		first = tmp.next;
@@ -58,7 +58,7 @@ public class FirstLastLinkList {
 	 */
 	public void display() {
 		
-		Node current = first;
+		Node<T> current = first;
 		while(current != null) {
 			current.display();
 			current = current.next;
@@ -69,11 +69,11 @@ public class FirstLastLinkList {
 	/**
 	 * 查找方法
 	 */
-	public Node find(long value) {
+	public Node<T> find(T value) {
 		
-		Node current = first;
-		while(current.data != value) {
-			if(current.next == null) {
+		Node<T> current = first;
+		while(current!=null&&current.data.compareTo(value)!=0) {
+			if(!current.hasNext()) {
 				return null;
 			}
 			current = current.next;
@@ -84,11 +84,11 @@ public class FirstLastLinkList {
 	/**
 	 * 删除方法，根据数据域来进行删除
 	 */
-	public Node delete(long value) {
-		Node current = first;
-		Node previous = first;
-		while(current.data != value) {
-			if(current.next == null) {
+	public Node<T> delete(T value) {
+		Node<T> current = first;
+		Node<T> previous = first;
+		while(current!=null&&current.data.compareTo(value)!=0) {
+			if(!current.hasNext()) {
 				return null;
 			}
 			previous = current;

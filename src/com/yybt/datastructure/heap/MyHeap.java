@@ -29,12 +29,13 @@ package com.yybt.datastructure.heap;
 /**
  * @ClassName: MyHeap
  * @Description:堆
+ * 2019/12/12改：改用泛型数组，不再单一为int类型
  **/
-public class MyHeap {
+public class MyHeap<T extends Comparable<T>> {
 	
-	public int[] arr;
+	private Object[] arr;
 	
-	private static int DEFAULT_SIZE = 20;
+	private final static int DEFAULT_SIZE = 20;
 	// 有效数据的大小
 	private int elements;
 
@@ -46,7 +47,7 @@ public class MyHeap {
 	 * 带参数的构造方法，参数为数组的大小
 	 */
 	public MyHeap(int maxsize) {
-		this.arr = new int[maxsize];
+		this.arr = new Object[maxsize];   // 创建泛型数组
 		this.elements = 0;
 	}
 
@@ -94,7 +95,8 @@ public class MyHeap {
 	 * @param j
 	 */
 	private void exChange(int i, int j) {
-		int tmp = arr[i];
+		@SuppressWarnings("unchecked")
+		T tmp = (T) arr[i];
 		arr[i] = arr[j];
 		arr[j] = tmp;
 	}
@@ -104,12 +106,16 @@ public class MyHeap {
 	 * 
 	 * @param index
 	 */
+	@SuppressWarnings("unchecked")
 	public void shift_up(int index) {
+		T t1 ,t2;
 		// 根节点不存在上浮操作
 		if (index > 0) {
 			int parent = parent(index);
+			t1=(T) arr[parent];
+			t2=(T) arr[index];
 			// 如果父亲节点比index的数值小，就交换二者的数值
-			if (arr[parent] < arr[index]) {
+			if (t1.compareTo(t2) <0 ) {
 				// 交换父子节点
 				exChange(parent, index);
 				// 递归调用
@@ -123,7 +129,10 @@ public class MyHeap {
 	 * 
 	 * @param index
 	 */
+	@SuppressWarnings("unchecked")
 	public void shift_down(int index) {
+		T t1;
+		T t2;
 		// 下沉首先必须得找到最大子节点
 		int n = index << 1;
 		// 没有孩子节点
@@ -134,7 +143,9 @@ public class MyHeap {
 		// 有两个孩子
 		if (n + 2 < elements) {
 			child = n + 1;
-			if (arr[n + 1] < arr[n + 2]) {
+		   t1=	(T) arr[n + 1];
+		   t2=	(T) arr[n + 2];
+			if( t1 .compareTo(t2)< 0) {
 				++child;
 			}
 		}
@@ -143,7 +154,9 @@ public class MyHeap {
 			child = n + 1;
 		}
 		// 比较
-		if (arr[index] < arr[child]) {
+		t1=(T) arr[index];
+		t2=(T) arr[child];
+		if (t1.compareTo(t2) < 0) {
 			exChange(index, child);
 			// 递归调用
 			shift_down(child);
@@ -155,7 +168,7 @@ public class MyHeap {
 	 * 
 	 * @return
 	 */
-	public int[] insert(int value) {
+	public Object[] insert(T value) {
 		if (elements<arr.length) {
 			//新增一个节点
 			arr[elements++] = value;
@@ -166,19 +179,19 @@ public class MyHeap {
 	}
 
 	/*
-	 * 添加元素需要以下三个步骤： 1.堆中有效数增加1个 2.将要插入的值赋值给堆底 3.为了继续维持堆属性，需要对其进行上浮操作。 删除：
-	 */
-	/**
+	 * 添加元素需要以下三个步骤： 1.堆中有效数增加1个 
+	 * 2.将要插入的值赋值给堆底 
+	 * 3.为了继续维持堆属性，需要对其进行上浮操作
 	 * 删除数据
 	 * 
 	 * @return
 	 */
-	public int[] delete(int index) {
+	public Object[] delete(int index) {
 		if (index + 1 > elements)
 			return arr;
 		exChange(index, elements - 1);
 		shift_down(index);
-		arr[--elements] = 0;
+		arr[--elements] = null;
 		return arr;
 	}
 
@@ -187,7 +200,7 @@ public class MyHeap {
 	 * 
 	 * @return
 	 */
-	public int[] sort() {
+	public Object[] sort() {
 		for (int i = elements - 1; i > 0; i--) {
 			exChange(0, i);
 			heapify(0, i);
@@ -200,19 +213,25 @@ public class MyHeap {
 	 * @param i
 	 *            堆下标
 	 */
+	@SuppressWarnings("unchecked")
 	private void heapify(int i, int size) {
+		T t1 ,t2;
 		// 或者左右孩子节点
 		int leftChild = left(i);
 		int rightChild = right(i);
 		// 临时变量，用来记录需要交换的元素的数组下标
 		int temp = i;
 		// 比左孩子小,需要交换的元素的数组下标为左孩子下标
-		if (leftChild < size && arr[i] < arr[leftChild]) {
+		t1=(T) arr[i];
+		t2=(T) arr[leftChild];
+		if (leftChild < size &&t1.compareTo(t2) <0 ) {
 			temp = leftChild;
 		}
 		// 比右孩子小,需要交换的元素的数组下标为右孩子下标
 		// 考虑到上边可能已经需要交换一次 ，这里对比的应该是heap[temp]和右孩子，而不应该是 heap[i]
-		if (rightChild < size && arr[temp] < arr[rightChild]) {
+		t1=(T) arr[temp];
+		t2=(T) arr[rightChild];
+		if (rightChild < size && t1.compareTo(t2) <0 ) {
 			temp = rightChild;
 		}
 		if (temp == i) {
@@ -224,11 +243,12 @@ public class MyHeap {
 		heapify(temp, size);
 	}
 	
-	public  int  get(int index) {
+	@SuppressWarnings("unchecked")
+	public  T  get(int index) {
 		if (index<0||index>=arr.length) {
-			return -1;
+			return null;
 		}
-		return arr[index];
+		return (T) arr[index];
 	}
 	
 	public  void  show() {

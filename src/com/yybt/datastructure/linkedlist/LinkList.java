@@ -5,9 +5,9 @@ package com.yybt.datastructure.linkedlist;
  * @author liuzehong
  *
  */
-public class LinkList {
+public class LinkList<T  extends Comparable<T>> {
 	//头结点
-	private Node first;
+	private Node<T> first;
 	
 	public LinkList() {
 		first = null;
@@ -16,8 +16,8 @@ public class LinkList {
 	/**
 	 * 插入一个结点，在头结点后进行插入
 	 */
-	public void insertFirst(long value) {
-		Node node = new Node(value);
+	public void insertFirst(T value) {
+		Node<T> node = new Node<T>(value);
 		node.next = first;
 		first = node;
 	}
@@ -25,8 +25,8 @@ public class LinkList {
 	/**
 	 * 删除一个结点，在头结点后进行删除
 	 */
-	public Node deleteFirst() {
-		Node tmp = first;
+	public Node<T> deleteFirst() {
+		Node<T> tmp = first;
 		first = tmp.next;
 		return tmp;
 	}
@@ -35,7 +35,7 @@ public class LinkList {
 	 * 显示方法
 	 */
 	public void display() {
-		Node current = first;
+		Node<T> current = first;
 		while(current != null) {
 			current.display();
 			current = current.next;
@@ -46,9 +46,9 @@ public class LinkList {
 	/**
 	 * 查找方法
 	 */
-	public Node find(long value) {
-		Node current = first;
-		while(current.data != value) {
+	public Node<T> find(T value) {
+		Node<T> current = first;
+		while(current.data.compareTo(value) !=0 ) {
 			if(current.next == null) {
 				return null;
 			}
@@ -60,10 +60,10 @@ public class LinkList {
 	/**
 	 * 删除方法，根据数据域来进行删除
 	 */
-	public Node delete(long value) {
-		Node current = first;
-		Node previous = first;
-		while(current.data != value) {
+	public Node<T> delete(T value) {
+		Node<T> current = first;
+		Node<T> previous = first;
+		while(current.data .compareTo(value)!=0) {
 			if(current.next == null) {
 				return null;
 			}
@@ -78,6 +78,19 @@ public class LinkList {
 		}
 		return current;
 		
+	}
+	
+	public static void main(String[] args) {
+		LinkList<Integer> linkList = new LinkList<>();
+		linkList.insertFirst(34);
+		linkList.insertFirst(23);
+		linkList.insertFirst(12);
+		linkList.insertFirst(0);
+		linkList.insertFirst(-1);
+		
+		 linkList.delete(34);
+		System.out.println(linkList.find(12));
+		linkList.display();
 	}
 	
 

@@ -1,17 +1,19 @@
 package com.yybt.datastructure.linkedlist;
 
 /**
- * 双向链表
- * @author liuzehong
- *
- */
-public class DoubleLinkList<T extends Comparable<T>> {
+  * @ClassName: MyLinkedList
+  * @Description: 
+  * @author liuzehong
+  *  比如 1-》2-》3—》4  访问3，链表将变为1-》2-》4—》3 访问1 ，链表将变为2-》4—》3-》1
+ **/
+public class MyLinkedList <T extends Comparable<T>>{
+
 	//头结点
 	protected Node<T> first;
 	//尾结点
 	private Node<T> last;
 	
-	public DoubleLinkList() {
+	public MyLinkedList() {
 		first = null;
 		last = null;
 	}
@@ -45,7 +47,7 @@ public class DoubleLinkList<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * 删除一个结点，在头结点后进行删除
+	 * 删除一个结点，在头结点后进行删除，同时也是最last访问元素。
 	 */
 	public Node<T> deleteFirst() {
 		Node<T> tmp = first;
@@ -59,10 +61,9 @@ public class DoubleLinkList<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * 删除结点，从尾部进行删除
+	 * 删除结点，从尾部进行删除，同时也是最近访问元素。
 	 */
 	public Node<T>deleteLast() {
-		//Node<T> tmp = last;
 		if(!first.hasNext()) {
 			first = null;
 		} else {
@@ -95,6 +96,20 @@ public class DoubleLinkList<T extends Comparable<T>> {
 			}
 			current = current.next;
 		}
+		if (current==last) {
+		}else if(current==first){
+			first=current.next;
+			current.next.previous=first;
+			last.next=current;
+			last=current;
+			last.next=null;
+		}else  {
+			current.previous.next=current.next;
+			current.next.previous=current.previous;
+			last.next=current;
+			last=current;
+			last.next=null;
+		}
 		return current;
 	}
 	
@@ -104,7 +119,7 @@ public class DoubleLinkList<T extends Comparable<T>> {
 	public Node<T> delete(T value) {
 		Node<T> current = first;
 		while(current.data.compareTo(value)!=0) {
-			if(!current.hasNext()) {
+			if(current.next == null) {
 				return null;
 			}
 			current = current.next;
@@ -125,4 +140,27 @@ public class DoubleLinkList<T extends Comparable<T>> {
 	public boolean isEmpty() {
 		return (first == null);
 	}
+
+	
+	public static void main(String[] args) {
+		MyLinkedList<String> linkList = new MyLinkedList<>();
+		linkList.insertFirst("张三");
+		linkList.insertFirst("李四");
+		linkList.insertFirst("王五");
+		linkList.insertFirst("赵六");
+		linkList.insertFirst("田七");
+		linkList.display();
+		System.out.println("last：    "+linkList.last.data);
+		linkList.find("田七");
+		//linkList.display();
+		System.out.println("last：    "+linkList.last.data);
+		linkList.find("李四");
+		System.out.println("last：    "+linkList.last.data);
+		//linkList.display();
+		linkList.find("王五");
+		System.out.println("last：    "+linkList.last.data);
+		//linkList.display();
+	}
+	
+	
 }
