@@ -62,5 +62,19 @@ public class MyStack<T> {
 		return top == data.size()-1;
 	}
 	
+	
+	public static void main(String[] args) {
+		MyStack<String> stack=new MyStack<>();
+		 for (int i = 0; i < 10; i++) {
+			 stack.push("ÕÅÈý"+i);
+		}
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+	}
+	
 
 }

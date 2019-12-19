@@ -1,64 +1,64 @@
+/**
+ * @Title: MyLinkedQueue.java
+ * @Package com.yybt.datastructure.queue
+ */
 package com.yybt.datastructure.queue;
 
-
 /**
- *队列
- * @author liuzehong
- *
- */
-public class MyQueue<T> {
-	//底层使用数组
-	//private long[] arr;
-	//改用泛型
-	private Object[] arr;
+  * @ClassName: MyLinkedQueue
+  * @Description: 链式存储实现
+  * @author liuzehong
+ **/
+public class MyLinkedQueue<T> {
+	
 	//有效数据的大小
-	private int elements;
+    private int elements;
 	//队头
-	private int front;
+	private Node front;
 	//队尾
-	private int end;
+	private Node end;
 	
 	/**
 	 * 默认构造方法
 	 */
-	public MyQueue() {
-		this(10);
-	}
-	
-	/**
-	 * 带参数的构造方法，参数为数组的大小
-	 */
-	public MyQueue(int maxsize) {
-		arr = new Object[maxsize];
-		elements = 0;
-		front = 0;
-		end = -1;
+	public MyLinkedQueue() {
+		front=null;
+		end=null;
+		elements=0;
 	}
 	
 	/**
 	 * 添加数据,从队尾插入
 	 */
 	public void insert(T value) {
-		arr[++end] = value;
+		Node node = new Node(value);
+		if (elements==0) {
+			front=end=node;
+		}else {
+			end.next=node;
+			end=node;
+		}
 		elements++;
-		
 	}
 	
 	/**
 	 * 删除数据，从队头删除
 	 */
-	@SuppressWarnings("unchecked")
 	public T remove() {
+		if (elements==0) {
+			return null;
+		}
 		elements--;
-		return (T) arr[front++];
+		T temp=front.data;
+		front=front.next;
+		return temp;
 	}
 	
 	/**
 	 * 查看数据，从队头查看
 	 */
-	@SuppressWarnings("unchecked")
 	public T peek() {
-		return (T) arr[front];
+		return front==null?null:front.data;
 	}
 	
 	/**
@@ -68,21 +68,30 @@ public class MyQueue<T> {
 		return elements == 0;
 	}
 	
-	/**
-	 * 判断是否满了
-	 */
-	public boolean isFull() {
-		return elements == arr.length;
-	}
-	
 	public int size() {
 		return elements;
 		
 	}
 	
-
+	
+	
+	
+	private class Node{
+		T data;
+		Node next;
+		/**
+		  * 创建一个新的实例 Node. 
+		  * <p>Title: </p>
+		  * <p>Description: </p>
+		  * @param value
+		  */
+		public Node(T value) {
+			this.data=value;
+		}
+	}
+	
 	public static void main(String[] args) {
-		MyQueue<Integer> queue=new MyQueue<>();
+		MyLinkedQueue<Integer> queue=new MyLinkedQueue<>();
 		for (int i = 0; i < 10; i++) {
 			queue.insert(i);
 		}
@@ -115,7 +124,5 @@ public class MyQueue<T> {
 		System.out.println(queue.remove());
 	}
 	
-	
+
 }
-
-

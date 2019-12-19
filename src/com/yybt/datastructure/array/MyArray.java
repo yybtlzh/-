@@ -3,11 +3,12 @@ package com.yybt.datastructure.array;
 /**
  * 数组
  * @author liuzehong
+ * 改用泛型，这里仍懒得考虑数组扩容问题，太low
  *
  */
-public class MyArray {
+public class MyArray<T extends Comparable<T>>  {
 	
-	private long[] arr;
+	private Object[] arr;
 	//表示有效数据的长度
 	private int elements;
 	
@@ -16,13 +17,13 @@ public class MyArray {
 	}
 	
 	public MyArray(int maxsize) {
-		arr = new long[maxsize];
+		arr = new Object[maxsize];
 	}
 	
 	/**
 	 * 添加数据
 	 */
-	public void insert(long value) {
+	public void insert(T value) {
 		arr[elements] = value;
 		elements++;
 	}
@@ -41,10 +42,11 @@ public class MyArray {
 	/**
 	 * 查找数据
 	 */
-	public int search(long value) {
+	@SuppressWarnings("unchecked")
+	public int search(T value) {
 		int i;
 		for(i = 0; i < elements; i++) {
-			if(value == arr[i]) {
+			if(value.compareTo((T)arr[i])==0) {
 				break;
 			}
 		}
@@ -60,11 +62,12 @@ public class MyArray {
 	/**
 	 * 查找数据，根据索引来查
 	 */
-	public long get(int index) {
+	@SuppressWarnings("unchecked")
+	public T get(int index) {
 		if(index >= elements || index < 0) {
 			throw new ArrayIndexOutOfBoundsException();
 		} else {
-			return arr[index];
+			return (T)arr[index];
 		}
 	}
 	
@@ -85,7 +88,7 @@ public class MyArray {
 	/**
 	 * 更新数据
 	 */
-	public void change(int index, int newvalue) {
+	public void change(int index, T newvalue) {
 		if(index >= elements || index < 0) {
 			throw new ArrayIndexOutOfBoundsException();
 		} else {

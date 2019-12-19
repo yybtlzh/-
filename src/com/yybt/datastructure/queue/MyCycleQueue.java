@@ -5,9 +5,9 @@ package com.yybt.datastructure.queue;
  * @author liuzehong
  *
  */
-public class MyCycleQueue {
+public class MyCycleQueue<T> {
 	//底层使用数组
-	private long[] arr;
+	private Object[] arr;
 	//有效数据的大小
 	private int elements;
 	//队头
@@ -26,7 +26,7 @@ public class MyCycleQueue {
 	 * 带参数的构造方法，参数为数组的大小
 	 */
 	public MyCycleQueue(int maxsize) {
-		arr = new long[maxsize];
+		arr = new Object[maxsize];
 		elements = 0;
 		front = 0;
 		end = -1;
@@ -35,7 +35,7 @@ public class MyCycleQueue {
 	/**
 	 * 添加数据,从队尾插入
 	 */
-	public void insert(long value) {
+	public void insert(T value) {
 		if(end == arr.length - 1) {
 			end = -1;
 		}
@@ -46,8 +46,9 @@ public class MyCycleQueue {
 	/**
 	 * 删除数据，从队头删除
 	 */
-	public long remove() {
-		long value = arr[front++];
+	public T remove() {
+		@SuppressWarnings("unchecked")
+		T value = (T) arr[front++];
 		if(front == arr.length) {
 			front = 0;
 		}
@@ -58,8 +59,9 @@ public class MyCycleQueue {
 	/**
 	 * 查看数据，从队头查看
 	 */
-	public long peek() {
-		return arr[front];
+	@SuppressWarnings("unchecked")
+	public T peek() {
+		return (T) arr[front];
 	}
 	
 	/**
@@ -74,5 +76,9 @@ public class MyCycleQueue {
 	 */
 	public boolean isFull() {
 		return elements == arr.length;
+	}
+	
+	public int size() {
+		return elements;
 	}
 }
