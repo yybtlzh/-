@@ -90,7 +90,7 @@ public class MyLinkedList <T extends Comparable<T>>{
 	 */
 	public Node<T> find(T value) {
 		Node<T> current = first;
-		while(current.data .compareTo(value)!=0) {
+		while(current.data.compareTo(value)!=0) {
 			if(!current.hasNext()) {
 				return null;
 			}
@@ -152,14 +152,14 @@ public class MyLinkedList <T extends Comparable<T>>{
 		linkList.display();
 		System.out.println("last：    "+linkList.last.data);
 		linkList.find("田七");
-		//linkList.display();
+		linkList.display();
 		System.out.println("last：    "+linkList.last.data);
 		linkList.find("李四");
 		System.out.println("last：    "+linkList.last.data);
-		//linkList.display();
+		linkList.display();
 		linkList.find("王五");
 		System.out.println("last：    "+linkList.last.data);
-		//linkList.display();
+		linkList.display();
 	}
 	
 	
