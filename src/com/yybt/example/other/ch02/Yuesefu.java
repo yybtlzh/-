@@ -32,7 +32,7 @@ public class Yuesefu {
 			temp=temp.next;
 		}
 		System.out.println();
-		System.out.print("存活下来的是：");linkList.display();
+		System.out.print("最后死的那位是：");linkList.display();
 		System.out.println("结束");
 		
 	}
