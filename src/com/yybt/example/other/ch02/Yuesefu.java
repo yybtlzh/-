@@ -24,9 +24,11 @@ public class Yuesefu {
 		Node<Integer> first=linkList.first;
 		Node<Integer> temp=first;
 		while (temp!=temp.next) {
-			for (int i = 1; i <n; i++) {
+			/*for (int i = 1; i <n; i++) {
 				temp=temp.next;
-			}
+			}*/
+			//小改进：减少了一次循环，搜嘎
+			temp=temp.next.next;
 			//自杀：也就是从链表中删除
 			System.out.print(linkList.delete(temp.data).data+"\t");
 			temp=temp.next;
