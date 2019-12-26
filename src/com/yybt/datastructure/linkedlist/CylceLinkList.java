@@ -21,12 +21,11 @@ public class CylceLinkList<T extends Comparable<T>> {
 	 * 插入一个结点
 	 */
 	public void insert(T value) {
-	
+		Node<T> node = new Node<T>(value);
 		if (first.data == null) {
-			first=new Node<T>(value);
+			first=node;
 			first.next = first;
 		} else {
-			Node<T> node = new Node<T>(value);
 			Node<T> temp = first;
 			while (temp.next!= first)
 				temp = temp.next;
@@ -60,7 +59,8 @@ public class CylceLinkList<T extends Comparable<T>> {
 			}
 			current = current.next;
 		}
-		return current;
+		//进行最后一次数据核对
+		return current.data.compareTo(value) == 0?current:null;
 	}
 
 	
@@ -110,8 +110,8 @@ public class CylceLinkList<T extends Comparable<T>> {
 		System.out.println(linklist.find("张三4").next.data);
 		linklist.display();
 		linklist.display();
-		Node<String> node = linklist.find("张三3");
-		System.out.println(node.next.data);
+		Node<String> node = linklist.find("张三433");
+		System.out.println(node);
 
 	}
 }
