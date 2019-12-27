@@ -24,17 +24,17 @@ public class Yuesefu {
 		Node<Integer> first=linkList.first;
 		Node<Integer> temp=first;
 		while (temp!=temp.next) {
-			/*for (int i = 1; i <n; i++) {
+			for (int i = 1; i <n; i++) {
 				temp=temp.next;
-			}*/
-			//小改进：减少了一次循环，搜嘎
-			temp=temp.next.next;
+			}
+			//如果n=3，上面的循环完全可以用该行代码替代，优化了循环次数
+			 //temp=temp.next.next;
 			//自杀：也就是从链表中删除
 			System.out.print(linkList.delete(temp.data).data+"\t");
 			temp=temp.next;
 		}
 		System.out.println();
-		System.out.print("最后死的那位是：");linkList.display();
+		System.out.print("存活下来的是：");linkList.display();
 		System.out.println("结束");
 		
 	}
