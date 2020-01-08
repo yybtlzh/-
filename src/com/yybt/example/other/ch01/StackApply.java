@@ -144,7 +144,52 @@ public class StackApply {
 		
 	}
 	
-	
+
+    /**
+     *  十进制转二进制
+      * toBinary()
+      * @Title: toBinary
+      * @param @param num
+      * @param @return    设定文件
+      * @return String    返回类型
+      * @throws
+     */
+    public static String toBinary(int num) {
+    	MyStack<Integer> stack = new MyStack<>(32);
+        while (num > 0) {
+            stack.push(num % 2);
+            num = num / 2;
+        }
+        StringBuffer sb = new StringBuffer();
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 十进制转base进制
+      * baseConvert()
+      * @Title: baseConvert
+      * @param @param num
+      * @param @param base
+      * @param @return    设定文件
+      * @return String    返回类型
+      * @throws
+     */
+    public static String baseConvert(int num, int base) {
+    	MyStack<Integer> stack = new MyStack<>(32);
+        while (num > 0) {
+            stack.push(num % base);
+            num = num / base;
+        }
+        String dights = "0123456789abcdef";
+        StringBuffer sBuffer = new StringBuffer();
+        while (!stack.isEmpty()) {
+            sBuffer.append(String.valueOf(dights.charAt((int) stack.pop())));
+        }
+        return sBuffer.toString();
+    }
 
 	public static void main(String[] args) {
 		String str = "2*(2+3)*4-9";
@@ -157,6 +202,9 @@ public class StackApply {
 		}
 		System.out.println("中缀转后缀："+rt);
 		System.out.println("计算结果："+compute(result));
+		
+		System.out.println(toBinary(123456789));
+	    System.out.println(baseConvert(18, 2));
 	}
 
 }
