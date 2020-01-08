@@ -23,23 +23,24 @@ public class KMP {
      * 
      */
     private  int[] getNext(char[] t) {
-        int[] next = new int[t.length];
-        //首位和第二位还就是确定的-1和0
-        next[0] = -1;
-        int k;
-        for (int j = 2; j < t.length; j++) {
-            k=next[j-1];
-            while (k!=-1) {
-                if (t[j - 1] == t[k]) {
-                    next[j] = k + 1;
-                    break;
-                }else {
-                    k = next[k];
-                }
-            }
-        }
-        return next;
-    }
+		int[] next = new int[t.length];
+		next[0]=-1;
+		int i=-1;
+		int j=0;
+		int length=t.length-1;
+		while(j<length) {
+			if (i==-1||t[i]==t[j]) {
+				next[++j]=++i;
+				
+			}else {
+				//回溯
+				i=next[i];
+			}
+		
+		}
+		return next;
+		
+	}
 
    /**
     * 对主串s和模式串t进行KMP模式匹配
@@ -69,7 +70,7 @@ public class KMP {
     }
 
     public static void main(String[] args) {
-        System.out.println(new KMP().match("qabcaadbcshsqhannaaansnsb", "hsqhan"));
+        System.out.println(new KMP().match("qabcaadbcshsqhannaaansnsb", "naaa"));
     }
 
 }
