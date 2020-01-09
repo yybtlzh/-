@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 /**
   * @ClassName: KMP
-  * @Description: TODO
+  * @Description:看毛片算法
   * @author liuzehong
  **/
 public class KMP {
@@ -30,7 +30,17 @@ public class KMP {
 		int length=t.length-1;
 		while(j<length) {
 			if (i==-1||t[i]==t[j]) {
-				next[++j]=++i;
+				/**
+				 * next[++j]=++i;
+				 * 当两个字符相等时要跳过,减少回溯次数，优化next算法
+				 */
+				if (t[++j] == t[++i]) {  //if else取代上面的一行代码
+		              next[j] = next[i];
+		        }else{
+		            next[j] = i;
+		        }
+				
+				
 				
 			}else {
 				//回溯
@@ -62,6 +72,7 @@ public class KMP {
             if(j == -1 || A[i]==B[j]){
                 i++;
                 j++;
+                
             }else {
                 j = next[j];
             }
